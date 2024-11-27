@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\RouteRepository;
+use App\Repositories\RouteRepositoryInterface;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->app->bind(RouteRepositoryInterface::class, RouteRepository::class);
     }
 
     /**
