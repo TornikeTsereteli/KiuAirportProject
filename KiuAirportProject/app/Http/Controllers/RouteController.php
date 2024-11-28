@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Repositories\RouteRepository;
 use App\Repositories\RouteRepositoryInterface;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Mockery\Exception;
 
 /**
  * @OA\Info(
@@ -32,13 +34,23 @@ class RouteController extends Controller
         return $this->routeRepository->getAll();
     }
 
-    public function addRoute(array $data): void
+    /**
+     * @Route("/api/add-route", methods={"POST"})
+     */
+    public function addRoute(Request $request): void
     {
+
+        $data = $request->validate([
+            'start_location' => 'required',
+            'end_location' => 'required',
+            'price_per_ticket' => 'required',
+        ]);
+
         $this->routeRepository->create($data);
     }
 
     /**
-     * @OA\Post(
+     * @OA\Get (
      *     path="/addnumber",
      *     summary="Add two numbers",
      *     description="This endpoint accepts two integers and returns their sum.",

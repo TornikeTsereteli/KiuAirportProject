@@ -2,16 +2,20 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier
 {
+
     /**
      * The URIs that should be excluded from CSRF verification.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $except = [
-        '/addnumber',  // Disable CSRF protection for all routes
+        '*',
+        'add-route',
+        'addnumber'
     ];
 }

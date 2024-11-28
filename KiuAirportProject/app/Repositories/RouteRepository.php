@@ -19,7 +19,8 @@ class RouteRepository implements RouteRepositoryInterface
 
     public function create(array $data): bool
     {
-        return Route::create($data);
+        Route::create($data);
+        return true;
     }
 
     public function update(int $id, array $data): bool
